@@ -11,46 +11,90 @@
         android:id="@+id/score_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="32dp"
         android:text="Score: 0"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
-        android:id="@+id/left_number_button"
+        android:id="@+id/submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginBottom="42dp"
-        android:onClick="leftButtonOnClick"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/right_number_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="42dp"
-        android:onClick="rightButtonOnClick"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginTop="25dp"
+        android:onClick="submitButtonOnClick"
+        android:text="Submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score_text" />
 
     <ImageView
         android:id="@+id/you_won_image"
-        android:layout_width="248dp"
-        android:layout_height="248dp"
-        android:layout_marginTop="120dp"
+        android:layout_width="294dp"
+        android:layout_height="314dp"
+        android:layout_marginTop="20dp"
         android:scaleType="centerInside"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/awesome_face" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/sirfetchd_silhouette" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="153dp"
+        android:layout_height="185dp"
+        android:layout_marginTop="20dp"
+        android:checkedButton="@id/Sirfectch_d"
+        android:onClick="radioButtonOnClick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/you_won_image">
+
+        <RadioButton
+            android:id="@+id/Sirfectch_d"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:onClick="radioButtonOnClick"
+            android:text="Sirfectch'd" />
+
+        <RadioButton
+            android:id="@+id/Glalie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="radioButtonOnClick"
+            android:text="Glalie" />
+
+        <RadioButton
+            android:id="@+id/Delphox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="radioButtonOnClick"
+            android:text="Delphox"
+            android:textAlignment="viewStart" />
+
+        <RadioButton
+            android:id="@+id/Dedenne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:onClick="radioButtonOnClick"
+            android:text="Dedenne" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Who's That Pokemon"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

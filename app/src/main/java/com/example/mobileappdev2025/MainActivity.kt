@@ -13,9 +13,9 @@ import androidx.core.view.WindowInsetsCompat
 import java.util.Random
 
 class MainActivity : AppCompatActivity() {
-    private var leftNum :Int = 0;
-    private var rightNum :Int = 0;
     private var score :Int = 0;
+    var img_num: Int = 0;
+    var correctionChecked: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,52 +28,109 @@ class MainActivity : AppCompatActivity() {
         }
         // above init layout ui
 
-        pickRandomNumber()
-        setScore(0)
+        //pickRandomNumber()
+        findViewById<ImageView>(R.id.you_won_image).setImageResource(R.drawable.sirfetchd_silhouette)
+        setScore(0, 0)
     }
 
-    fun leftButtonOnClick(view: View)
+    fun radioButtonOnClick(view: View)
     {
-        if (leftNum > rightNum)
-            setScore(score+1)
+        if ((img_num == 0) && view.id == R.id.Sirfectch_d){
+            correctionChecked = true
+        }
+
+        else if ((img_num == 2) && view.id == R.id.Glalie){
+            correctionChecked = true
+        }
+
+        else if ((img_num == 4) && view.id == R.id.Delphox){
+            correctionChecked = true
+        }
+
+        else if ((img_num == 6) && view.id == R.id.Dedenne){
+            correctionChecked = true
+        }
+
         else
-            setScore(score-1)
-
-        pickRandomNumber()
+            correctionChecked = false
     }
 
-    fun rightButtonOnClick(view: View)
+    fun submitButtonOnClick(view: View)
     {
-        if (leftNum < rightNum)
-            setScore(score+1)
-        else
-            setScore(score-1)
+        if(img_num < 7) {
+            if(img_num == 0 || img_num == 2 || img_num == 4 || img_num == 6) {
+                if (correctionChecked) {
+                    setScore(score + 1, img_num + 1)
+                } else {
+                    setScore(score - 1, img_num + 1)
+                }
 
-        pickRandomNumber()
+            } else {
+                setScore(score, img_num + 1)
+            }
+
+            nextButtonOnClick()
+        }
+
+        else {
+            findViewById<ImageView>(R.id.you_won_image).setImageResource(R.drawable.sirfetchd_silhouette)
+            img_num = 0
+        }
     }
 
-    fun pickRandomNumber()
-    {
-        var leftButton = findViewById<Button>(R.id.left_number_button)
-        var rightButton = findViewById<Button>(R.id.right_number_button)
-
-        var rand = Random()
-
-        do {
-            leftNum = rand.nextInt(10)
-            rightNum = rand.nextInt(10)
-        } while (leftNum == rightNum)
-
-        leftButton.text = "$leftNum"
-        rightButton.text = "$rightNum"
-    }
-
-    fun setScore(_score: Int)
+    fun setScore(_score: Int, _img_num: Int)
     {
         score = _score;
+        img_num = _img_num;
 
-        findViewById<ImageView>(R.id.you_won_image).visibility = if (score > 5) View.VISIBLE else View.INVISIBLE;
+        // vari = (condition) ? true : false;
+        // findViewById<ImageView>(R.id.you_won_image).visibility = if (score > 5) View.VISIBLE else View.INVISIBLE;
 
         findViewById<TextView>(R.id.score_text).text = "Score: $score"
     }
-}
+
+    fun nextButtonOnClick() {
+
+        if(img_num == 0 || img_num == 2 || img_num == 4 || img_num == 6) {
+            findViewById<Button>(R.id.submit_button).text = "Submit"
+        }
+
+        else if (img_num == 1 || img_num == 3 || img_num == 5 || img_num == 7) {
+            findViewById<Button>(R.id.submit_button).text = "Next"
+        }
+
+            if (img_num == 0) {
+                findViewById<ImageView>(R.id.you_won_image).setImageResource(R.drawable.sirfetchd_silhouette)
+            }
+
+            else if (img_num == 1) {
+                findViewById<ImageView>(R.id.you_won_image).setImageResource(R.drawable.sirfetchd_reveal)
+            }
+
+            else if (img_num == 2) {
+                findViewById<ImageView>(R.id.you_won_image).setImageResource(R.drawable.glalie_silhouette)
+            }
+
+            else if (img_num == 3) {
+                findViewById<ImageView>(R.id.you_won_image).setImageResource(R.drawable.glalie_reveal)
+            }
+
+            else if (img_num == 4) {
+                findViewById<ImageView>(R.id.you_won_image).setImageResource(R.drawable.delphox_silhouette)
+            }
+
+            else if (img_num == 5) {
+                findViewById<ImageView>(R.id.you_won_image).setImageResource(R.drawable.delphox_reveal)
+            }
+
+            else if (img_num == 6) {
+                findViewById<ImageView>(R.id.you_won_image).setImageResource(R.drawable.dedenne_silhouette)
+            }
+
+            else if (img_num == 7) {
+                findViewById<ImageView>(R.id.you_won_image).setImageResource(R.drawable.dedenne_reveal)
+            }
+
+            correctionChecked = false
+        }
+    }
